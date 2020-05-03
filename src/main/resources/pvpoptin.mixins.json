@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.rerezd.pvpoptin.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "DamageMixin", "ChatMixin"
+  ],
+  "client": [
+    "DamageMixin", "ChatMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
