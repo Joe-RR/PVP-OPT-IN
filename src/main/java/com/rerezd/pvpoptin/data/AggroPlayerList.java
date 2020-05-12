@@ -15,13 +15,13 @@ import net.minecraft.util.Formatting;
 
 import java.io.File;
 
-public class AggroPlayersList extends ServerConfigList<GameProfile, AggroPlayerEntry> {
+public class AggroPlayerList extends ServerConfigList<GameProfile, AggroPlayerEntry> {
 	private static File configDir = FabricLoader.getInstance().getConfigDirectory();
 	private static File modConfigDir = new File(configDir, "PvpOptIn");
 	private static File aggroFile = new File(modConfigDir, "aggros.json");
-	public static AggroPlayersList INSTANCE = new AggroPlayersList(aggroFile);
+	public static AggroPlayerList INSTANCE = new AggroPlayerList(aggroFile);
 
-	private AggroPlayersList(File file) {
+	private AggroPlayerList(File file) {
 		super(file);
 
 		//noinspection ResultOfMethodCallIgnored

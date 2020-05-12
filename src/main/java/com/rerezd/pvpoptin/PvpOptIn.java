@@ -1,7 +1,7 @@
 package com.rerezd.pvpoptin;
 
 import com.rerezd.pvpoptin.command.OptCommand;
-import com.rerezd.pvpoptin.data.AggroPlayersList;
+import com.rerezd.pvpoptin.data.AggroPlayerList;
 import com.rerezd.pvpoptin.data.DataMigration;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.ModInitializer;
@@ -20,7 +20,7 @@ public class PvpOptIn implements ModInitializer {
 	public static final Logger LOGGER = LogManager.getLogger();
 
 	public static final String MODID = "pvp-opt-in";
-	public static final AggroPlayersList aggros = AggroPlayersList.INSTANCE;
+	public static final AggroPlayerList aggros = AggroPlayerList.INSTANCE;
 
 	public static MinecraftServer server;
 
