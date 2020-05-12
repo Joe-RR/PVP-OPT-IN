@@ -33,8 +33,14 @@ public class AggroPlayerEntry extends ServerConfigEntry<GameProfile> {
 	AggroPlayerEntry(JsonObject json) {
 		super(gameProfileFromJSON(json));
 		profile = gameProfileFromJSON(json);
-		isAggro = json.get("isAggro").getAsBoolean();
-		bypasses = json.get("bypass").getAsBoolean();
+
+		if (json.has("isAggro")) {
+			isAggro = json.get("isAggro").getAsBoolean();
+			bypasses = json.get("bypass").getAsBoolean();
+		} else {
+			isAggro = true;
+			bypasses = false;
+		}
 	}
 
 	@Override
