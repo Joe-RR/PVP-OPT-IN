@@ -5,5 +5,6 @@ import com.google.gson.JsonSerializationContext;
 import net.minecraft.text.Style;
 
 public interface TextSerializerDuck {
+	@SuppressWarnings({"EmptyMethod", "unused"})
 	void callAddStyle(Style style, JsonObject json, JsonSerializationContext context);
 }

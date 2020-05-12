@@ -1,5 +1,6 @@
 package com.rerezd.pvpoptin.mixin;
 
+import com.mojang.authlib.GameProfile;
 import com.rerezd.pvpoptin.PvpOptIn;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -17,8 +18,13 @@ public class MixinServerPlayerEntity {
 		)
 	)
 	private boolean onShouldDamagePlayer(ServerPlayerEntity attacker, PlayerEntity attacked) {
-		if (!PvpOptIn.aggros.isAggro(attacker.getGameProfile()) || !PvpOptIn.aggros.isAggro(attacked.getGameProfile())) {
-			return false;
+		GameProfile attackerProfile = attacker.getGameProfile();
+		GameProfile attackedProfile = attacked.getGameProfile();
+
+		if (!PvpOptIn.aggros.bypasses(attackerProfile)) {
+			if (!PvpOptIn.aggros.isAggro(attackerProfile) || !PvpOptIn.aggros.isAggro(attackedProfile)) {
+				return false;
+			}
 		}
 
 		return attacker.shouldDamagePlayer(attacked);

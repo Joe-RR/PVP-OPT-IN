@@ -14,12 +14,13 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 
 import java.io.File;
+import java.util.function.Consumer;
 
 public class AggroPlayerList extends ServerConfigList<GameProfile, AggroPlayerEntry> {
-	private static File configDir = FabricLoader.getInstance().getConfigDirectory();
-	private static File modConfigDir = new File(configDir, "PvpOptIn");
-	private static File aggroFile = new File(modConfigDir, "aggros.json");
-	public static AggroPlayerList INSTANCE = new AggroPlayerList(aggroFile);
+	private static final File configDir = FabricLoader.getInstance().getConfigDirectory();
+	private static final File modConfigDir = new File(configDir, "PvpOptIn");
+	private static final File aggroFile = new File(modConfigDir, "aggros.json");
+	public static final AggroPlayerList INSTANCE = new AggroPlayerList(aggroFile);
 
 	private AggroPlayerList(File file) {
 		super(file);
@@ -34,17 +35,32 @@ public class AggroPlayerList extends ServerConfigList<GameProfile, AggroPlayerEn
 	}
 
 	public boolean isAggro(GameProfile profile) {
-		return get(profile) != null;
+		AggroPlayerEntry entry = get(profile);
+		return entry != null && entry.isAggro;
+	}
+
+	public boolean bypasses(GameProfile profile) {
+		AggroPlayerEntry entry = get(profile);
+		return entry != null && entry.bypasses;
+	}
+
+	public void modifyEntry(GameProfile profile, Consumer<AggroPlayerEntry> consumer) {
+		AggroPlayerEntry entry = get(profile);
+
+		if (entry == null) {
+			entry = new AggroPlayerEntry(profile);
+			consumer.accept(entry);
+
+			if (entry.isValid()) add(entry);
+		} else {
+			consumer.accept(entry);
+
+			if (!entry.isValid()) remove(entry);
+		}
 	}
 
 	public void setAggro(GameProfile profile, boolean aggro) {
-		if (isAggro(profile) == aggro) return;
-
-		if (aggro) {
-			add(new AggroPlayerEntry(profile));
-		} else {
-			remove(profile);
-		}
+		modifyEntry(profile, entry -> entry.isAggro = aggro);
 
 		PlayerManager playerManager = PvpOptIn.server.getPlayerManager();
 		ServerPlayerEntity playerEntity = playerManager.getPlayer(profile.getId());
@@ -54,13 +70,16 @@ public class AggroPlayerList extends ServerConfigList<GameProfile, AggroPlayerEn
 		}
 	}
 
-	@SuppressWarnings("WeakerAccess")
+	public void setBypasses(GameProfile profile, boolean bypasses) {
+		modifyEntry(profile, entry -> entry.bypasses = bypasses);
+	}
+
 	public void setAggro(GameProfile profile) {
 		setAggro(profile, true);
 	}
 
-	private Text AGGRO_PREFIX = PvpOptIn.translatableText("prefix.aggressive").formatted(Formatting.YELLOW);
-	private Text PASSIVE_PREFIX = PvpOptIn.translatableText("prefix.passive").formatted(Formatting.AQUA);
+	private final Text AGGRO_PREFIX = PvpOptIn.translatableText("prefix.aggressive").formatted(Formatting.YELLOW);
+	private final Text PASSIVE_PREFIX = PvpOptIn.translatableText("prefix.passive").formatted(Formatting.AQUA);
 
 	public Text getAggroPrefix(GameProfile profile) {
 		if (isAggro(profile)) {
