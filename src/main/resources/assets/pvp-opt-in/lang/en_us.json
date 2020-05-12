@@ -1,0 +1,8 @@
+{
+	"pvp-opt-in.command.opt.invalid-playstyle": "Invalid playstyle: %s",
+	"pvp-opt-in.command.opt.not-full-health": "You can only change your PVP status at full health",
+	"pvp-opt-in.command.opt.status-changed": "You are now %s",
+	"pvp-opt-in.command.opt.status": "You are currently %s",
+	"pvp-opt-in.prefix.aggressive": "[Aggressive]",
+	"pvp-opt-in.prefix.passive": "[Passive]"
+}
