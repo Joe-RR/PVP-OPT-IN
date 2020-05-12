@@ -26,7 +26,7 @@ public class AggroPlayerEntry extends ServerConfigEntry<GameProfile> {
 	AggroPlayerEntry(GameProfile profile) {
 		super(profile);
 		this.profile = profile;
-		this.isAggro = true;
+		this.isAggro = false;
 		this.bypasses = false;
 	}
 
