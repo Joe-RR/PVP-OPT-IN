@@ -1,6 +1,6 @@
 package com.rerezd.pvpoptin;
 
-import com.rerezd.pvpoptin.command.CommandOpt;
+import com.rerezd.pvpoptin.command.OptCommand;
 import com.rerezd.pvpoptin.data.AggroPlayersList;
 import com.rerezd.pvpoptin.data.DataMigration;
 import net.fabricmc.api.EnvType;
@@ -48,7 +48,7 @@ public class PvpOptIn implements ModInitializer {
 			DataMigration.migrateData();
 		}
 
-		CommandRegistrationCallback.EVENT.register(CommandOpt::register);
+		CommandRegistrationCallback.EVENT.register(OptCommand::register);
 	}
 
 	public static String translationKey(String path) {

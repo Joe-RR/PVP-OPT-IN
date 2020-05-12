@@ -20,7 +20,7 @@ import java.util.Locale;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 
-public class CommandOpt {
+public class OptCommand {
 	private static final Set<String> PASSIVE = ImmutableSet.of("out", "passive");
 	private static final Set<String> AGGRESSIVE = ImmutableSet.of("in", "aggressive", "aggro");
 	private static final Set<String> PLAYSTYLES = Sets.union(PASSIVE, AGGRESSIVE).immutableCopy();
@@ -40,7 +40,7 @@ public class CommandOpt {
 			return 1;
 		});
 
-		playstyle.executes(CommandOpt::execute);
+		playstyle.executes(OptCommand::execute);
 
 		dispatcher.register(rootNode.then(playstyle));
 	}
