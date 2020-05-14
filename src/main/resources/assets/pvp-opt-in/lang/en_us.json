@@ -1,8 +1,18 @@
 {
-	"pvp-opt-in.command.opt.invalid-playstyle": "Invalid playstyle: %s",
-	"pvp-opt-in.command.opt.not-full-health": "You can only change your PVP status at full health",
-	"pvp-opt-in.command.opt.status-changed": "You are now %s",
-	"pvp-opt-in.command.opt.status": "You are currently %s",
+	"pvp-opt-in.command.opt.playstyle.invalid": "Invalid playstyle: %s",
+	"pvp-opt-in.command.opt.playstyle.not-full": "You can only change your PVP status at full health",
+	"pvp-opt-in.command.opt.playstyle.changed": "You are now %s",
+	"pvp-opt-in.command.opt.playstyle.status": "You are currently %s",
+	"pvp-opt-in.command.opt.bypass.invalid": "Invalid bypass: %s",
+	"pvp-opt-in.command.opt.bypass.enabled": "Enabled PVP bypass",
+	"pvp-opt-in.command.opt.bypass.other.enabled": "Enabled PVP bypass for %s",
+	"pvp-opt-in.command.opt.bypass.disabled": "Disabled PVP bypass",
+	"pvp-opt-in.command.opt.bypass.other.disabled": "Disabled PVP bypass for %s",
+	"pvp-opt-in.command.opt.bypass.status.enabled": "PVP bypass is currently enabled",
+	"pvp-opt-in.command.opt.bypass.status.other.enabled": "PVP bypass is currently enabled for %s",
+	"pvp-opt-in.command.opt.bypass.status.disabled": "PVP bypass is currently disabled",
+	"pvp-opt-in.command.opt.bypass.status.other.disabled": "PVP bypass is currently disabled for %s",
 	"pvp-opt-in.prefix.aggressive": "[Aggressive]",
-	"pvp-opt-in.prefix.passive": "[Passive]"
+	"pvp-opt-in.prefix.passive": "[Passive]",
+	"pvp-opt-in.exceptions.enum-argument-type.invalid-value": "Invalid value"
 }

@@ -17,6 +17,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(PlayerListS2CPacket.Entry.class)
 public class MixinPlayerListS2CPacketEntry {
+	@SuppressWarnings("unused")
 	@Shadow
 	@Final
 	@Mutable

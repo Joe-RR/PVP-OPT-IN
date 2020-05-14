@@ -17,6 +17,7 @@ import java.lang.reflect.Type;
 
 @Mixin(Text.Serializer.class)
 public abstract class MixinTextSerializer implements TextSerializerDuck {
+	@SuppressWarnings("unused")
 	@Override
 	@Invoker
 	public abstract void callAddStyle(

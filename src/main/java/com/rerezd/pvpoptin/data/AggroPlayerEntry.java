@@ -19,21 +19,38 @@ public class AggroPlayerEntry extends ServerConfigEntry<GameProfile> {
 		json.addProperty("name", profile.getName());
 	}
 
-	@SuppressWarnings("WeakerAccess")
-	GameProfile profile;
+	final GameProfile profile;
+	public boolean isAggro;
+	public boolean bypasses;
 
 	AggroPlayerEntry(GameProfile profile) {
 		super(profile);
 		this.profile = profile;
+		this.isAggro = false;
+		this.bypasses = false;
 	}
 
 	AggroPlayerEntry(JsonObject json) {
 		super(gameProfileFromJSON(json));
 		profile = gameProfileFromJSON(json);
+
+		if (json.has("isAggro")) {
+			isAggro = json.get("isAggro").getAsBoolean();
+			bypasses = json.get("bypass").getAsBoolean();
+		} else {
+			isAggro = true;
+			bypasses = false;
+		}
 	}
 
 	@Override
 	protected void fromJson(JsonObject json) {
 		gameProfileToJSON(profile, json);
+		json.addProperty("isAggro", isAggro);
+		json.addProperty("bypass", bypasses);
+	}
+
+	public boolean isValid() {
+		return isAggro || bypasses;
 	}
 }

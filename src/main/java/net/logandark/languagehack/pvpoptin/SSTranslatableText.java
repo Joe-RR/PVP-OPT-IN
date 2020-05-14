@@ -13,6 +13,7 @@ import java.util.Arrays;
 import java.util.ListIterator;
 
 public class SSTranslatableText extends TranslatableText {
+	@SuppressWarnings("unused")
 	public SSTranslatableText(String key) {
 		super(key);
 	}
